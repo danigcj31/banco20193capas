@@ -185,7 +185,8 @@ public class TestCuenta extends TestCase {
 		}
 		
 	}
-	
+
+	/*
 	@Test
 	public void testtrasferenciaokey () {
 		Cliente pepe = new Cliente("12345X", "Pepe", "Pérez");
@@ -233,12 +234,6 @@ public class TestCuenta extends TestCase {
 		
 	}
 	
-	
-	
-	
-	
-	
-	
-	
+	*/	
 	
 }

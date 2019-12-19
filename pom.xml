@@ -1,27 +1,21 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>edu.uclm.esi.iso2</groupId>
-	<artifactId>banco20193capas</artifactId>
-	<packaging>war</packaging>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>JunitExample Maven Webapp</name>
-	<url>http://maven.apache.org</url>
-	<properties>
-		<maven.compiler.target>1.8</maven.compiler.target>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<java.version>1.8</java.version>
-	</properties>
-	<parent>
-		<groupId>org.springframework.boot</groupId>
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>edu.uclm.esi.iso2</groupId>
+    <artifactId>banco20193capas</artifactId>
+    <packaging>war</packaging>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>Banco20193capas Maven</name>
+    <url>http://maven.apache.org</url>
+    
+    <parent>
+        <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.0.5.RELEASE</version>
-	</parent>
-	<dependencies>
-		
-		
-			<!-- Spring -->
+    </parent>
+
+    <dependencies> 
+    		<!-- Spring -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -76,7 +70,7 @@
 		    <groupId>org.seleniumhq.selenium</groupId>
 		    <artifactId>selenium-java</artifactId>
 		    <version>3.14.0</version>
-		</dependency>    
+		</dependency> 
 		
 		<!-- https://mvnrepository.com/artifact/junit/junit -->
 		<dependency>
@@ -84,10 +78,48 @@
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
 		</dependency>
-	</dependencies>
-	
-	<build>
-		<finalName>JunitExample</finalName>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+		</dependency>
+    </dependencies>
+    
+    <distributionManagement>
+		<repository>
+			<id>central</id>
+			<name>Jaydatt-releases</name>
+			<url>http://localhost:8081/artifactory/libs-snapshot-local</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<name>Jaydatt-snapshots</name>
+			<url>http://localhost:8081/artifactory/libs-snapshot-local</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+    <properties>
+        <java.version>1.8</java.version>
+    </properties>
+
+
+    <repositories>
+        <repository>
+            <id>spring-releases</id>
+            <url>https://repo.spring.io/libs-release</url>
+        </repository>
+    </repositories>
+    
+    <pluginRepositories>
+        <pluginRepository>
+            <id>spring-releases</id>
+            <url>https://repo.spring.io/libs-release</url>
+        </pluginRepository>
+    </pluginRepositories>
+    
+    
+    <build>
+		<finalName>banco20193capas</finalName>
 		<plugins>
 		
 			<plugin>
@@ -139,7 +171,7 @@
 										<limit implementation="org.jacoco.report.check.Limit">
 											<counter>COMPLEXITY</counter>
 											<value>COVEREDRATIO</value>
-											<minimum>0.60</minimum>
+											<minimum>0.40</minimum>
 										</limit>
 									</limits>
 								</rule>
@@ -148,31 +180,22 @@
 					</execution>
 				</executions>
 			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.9.1</version>
+			</plugin>
+			
 		</plugins>
 	</build>
-	
-	
-	<repositories>
-        <repository>
-            <id>spring-releases</id>
-            <url>https://repo.spring.io/libs-release</url>
-        </repository>
-    </repositories>
     
-    
-    <pluginRepositories>
-        <pluginRepository>
-            <id>spring-releases</id>
-            <url>https://repo.spring.io/libs-release</url>
-        </pluginRepository>
-    </pluginRepositories>
-    
-	
-	<reporting>
+    <reporting>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>2.7</version>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -192,7 +215,6 @@
 					</reportSet>
 				</reportSets>
 			</plugin>
-			<!-- commented for lab session concerning maintenance -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-pmd-plugin</artifactId>
@@ -218,13 +240,7 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jxr-plugin</artifactId>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-			</plugin>
 		</plugins>
 	</reporting>
-	
-	
-	
+    
 </project>
