@@ -8,6 +8,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import edu.uclm.esi.iso2.banco20193capas.model.Cuenta;
 import edu.uclm.esi.iso2.banco20193capas.model.Manager;
+import edu.uclm.esi.iso2.banco20193capas.model.MovimientoCuenta;
 import edu.uclm.esi.iso2.banco20193capas.exceptions.ClienteNoAutorizadoException;
 import edu.uclm.esi.iso2.banco20193capas.exceptions.ClienteNoEncontradoException;
 import edu.uclm.esi.iso2.banco20193capas.exceptions.CuentaInvalidaException;
@@ -76,20 +77,75 @@ public class TestGettersSetters extends TestCase {
 			}
 	}
 	
+	@Test
+	  public void testModificarCliente() {
+	    Cliente victor = new Cliente("3", "Victor", "Avila");
+	    victor.insert();
+	    Cuenta cuentavictor=new Cuenta(3);
+	    
+	    try {
+	      victor.setId(568L);
+	      victor.setNif("548");
+	      victor.setNombre("Nerea");
+	      victor.setApellidos("Cabiedas");
+	      
+	      String nerea=victor.getNombre();
+	      String nereaApe=victor.getApellidos();
+	    
+	      
+	    } catch (Exception e) {
+	      fail("Excepción inesperada: " + e.getMessage());
+	    }  
+	  }
+	
 	@Test 
 	public void testMovimientoCuenta () {
-		Cliente victor = new Cliente("3", "Victor", "Avila");
-		victor.insert();
-		Cuenta cuentavictor = new Cuenta(45);
-		Cliente dani = new Cliente("1", "Daniel", "Gonzalez");
-		dani.insert();
-		Cuenta cuentadani = new Cuenta(23);
 		try {
+			Cliente victor = new Cliente("3", "Victor", "Avila");
+			victor.insert();
+			Cuenta cuentavictor = new Cuenta(45);
+			Cliente ismael = new Cliente("8", "Ismael", "Espartano");
+			ismael.insert();
+			Cuenta cuentaismael = new Cuenta(45);
+			Cliente dani = new Cliente("1", "Daniel", "Gonzalez");
+			dani.insert();
+			Cuenta cuentadani = new Cuenta(23);
+			MovimientoCuenta mc = new MovimientoCuenta(cuentavictor, 100, "concepto");
 			cuentadani.ingresar(800);
-
-
-
+			
+			mc.setCuenta(cuentaismael);
+			mc.setId(45L);
+			mc.setImporte(300);
+			mc.setConcepto("Hola");
+			Cuenta cuentaprueba = mc.getCuenta();
+			String st = mc.getConcepto();
+			
+			if(mc.getConcepto() != null) {
+				System.out.println("OK");
+				System.out.println("OK");
+				System.out.println("OK");
+				System.out.println("OK");
+				System.out.println("OK");
+				System.out.println("OK");
+				System.out.println("OK");
+			}
+			
 			} catch (Exception e) {
 			}
 	}
+	@Test
+	  public void testLanzadoraMain()  {
+
+	    Lanzadora lanzadora=new Lanzadora();
+	    
+	    String args[]= {"1","2", "3"};
+	    try {
+	      lanzadora.main(args);
+	    
+	      
+	    } catch (Exception e) {
+	      fail("Excepción inesperada: " + e.getMessage());
+	    }  
+	    
+	  }
 }
