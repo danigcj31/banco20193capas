@@ -18,7 +18,7 @@ import edu.uclm.esi.iso2.banco20193capas.exceptions.ImporteInvalidoException;
 import edu.uclm.esi.iso2.banco20193capas.exceptions.SaldoInsuficienteException;
 
 /**
-* La clase {@code Cuenta} representa una cuenta bancaria, que ha de tener al menos un {@see Cliente} que sea titular.
+* La clase code Cuenta representa una cuenta bancaria, que ha de tener al menos un see Cliente que sea titular.
 * 
 * 
 */
@@ -60,7 +60,7 @@ public class Cuenta {
 	/**
 	 * Realiza un ingreso en la cuenta
 	 * @param importe	El importe que se ingresa
-	 * @throws ImporteInvalidoException	Si el importe es <=0
+	 * @throws ImporteInvalidoException	Si el importe es menosr o igual a 0
 	 */
 	public void ingresar(double importe) throws ImporteInvalidoException {
 		this.ingresar(importe, "Ingreso de efectivo");
@@ -76,8 +76,8 @@ public class Cuenta {
 	/**
 	 * Realiza una retirada de la cuenta
 	 * @param importe	El importe que se retira
-	 * @throws ImporteInvalidoException	Si el importe es <=0
-	 * @throws SaldoInsuficienteException	Si el importe>getSaldo()
+	 * @throws ImporteInvalidoException	Si el importe es menor igual 0
+	 * @throws SaldoInsuficienteException	Si el importe mayor getSaldo()
 	 */
 	public void retirar(double importe) throws ImporteInvalidoException, SaldoInsuficienteException {
 		this.retirar(importe, "Retirada de efectivo");
@@ -109,7 +109,7 @@ public class Cuenta {
 	 * @param importe				El importe que se transfiere
 	 * @param concepto				El concepto de la transferencia
 	 * @throws CuentaInvalidaException	Si la cuenta destino es esta misma o no existe en la BD
-	 * @throws ImporteInvalidoException	Si el importe es <=0
+	 * @throws ImporteInvalidoException	Si el importe es menor o igual a 0
 	 * @throws SaldoInsuficienteException	Si la cuenta no tiene saldo suficiente para afrontar el importe y la comisión
 	 */
 	public void transferir(Long numeroCuentaDestino, double importe, String concepto) throws CuentaInvalidaException, ImporteInvalidoException, SaldoInsuficienteException {
