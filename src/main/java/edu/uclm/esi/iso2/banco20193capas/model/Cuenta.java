@@ -1,5 +1,4 @@
 package edu.uclm.esi.iso2.banco20193capas.model;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -33,17 +32,17 @@ public class Cuenta {
 	private boolean creada;
 		
 	public Cuenta() {
-		this.titulares=new ArrayList<>();
+		this.titulares = new ArrayList<>();
 	}
 
 	
 	public Cuenta(Long id) {
 		this();
-		this.id=id;
+		this.id = id;
 	}
 	
 	public Cuenta(Integer id) {
-		this(new Long(id));
+	    this(Long.valueOf(id));
 	}
 	
 	/**
@@ -67,7 +66,7 @@ public class Cuenta {
 	}
 
 	private void ingresar(double importe, String concepto) throws ImporteInvalidoException {
-		if (importe<=0)
+		if (importe <= 0)
 			throw new ImporteInvalidoException(importe);
 		MovimientoCuenta movimiento = new MovimientoCuenta(this, importe, concepto);
 		Manager.getMovimientoDAO().save(movimiento);
@@ -84,7 +83,7 @@ public class Cuenta {
 	}
 		
 	private void retirar(double importe, String concepto) throws ImporteInvalidoException, SaldoInsuficienteException {
-		if (importe<=0)
+		if (importe <= 0)
 			throw new ImporteInvalidoException(importe);
 		if (importe>getSaldo())
 			throw new SaldoInsuficienteException();
@@ -116,7 +115,7 @@ public class Cuenta {
 		if (this.getId().equals(numeroCuentaDestino))
 			throw new CuentaInvalidaException(numeroCuentaDestino);
 		this.retirar(importe, "Transferencia emitida");
-		double comision = Math.max(0.01*importe, 1.5);
+		double comision = Math.max(0.01 * importe, 1.5);
 		this.retirar(comision, "Comisión por transferencia");
 		Cuenta destino = this.load(numeroCuentaDestino);
 		destino.ingresar(importe, "Transferencia recibida");
