@@ -133,4 +133,19 @@ public class TestGettersSetters extends TestCase {
 			} catch (Exception e) {
 			}
 	}
+	@Test
+	  public void testLanzadoraMain()  {
+
+	    Lanzadora lanzadora=new Lanzadora();
+	    
+	    String args[]= {"1","2", "3"};
+	    try {
+	      lanzadora.main(args);
+	    
+	      
+	    } catch (Exception e) {
+	      fail("Excepción inesperada: " + e.getMessage());
+	    }  
+	    
+	  }
 }
